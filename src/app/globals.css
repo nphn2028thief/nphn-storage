@@ -119,6 +119,9 @@
   .body-2 {
     @apply text-[14px] leading-[20px] font-normal;
   }
+  .body-3 {
+    @apply text-[14px] leading-[20px] font-medium;
+  }
   .button {
     @apply text-[14px] leading-[20px] font-medium;
   }
@@ -154,8 +157,8 @@
   .shad-form-label {
     @apply text-light-100 pt-2 body-2 w-full !important;
   }
-  .shad-form-message {
-    @apply text-red body-2 ml-4 !important;
+  .shad-form-error-message {
+    @apply text-red body-3 ml-4 !important;
   }
   .shad-alert-dialog {
     @apply space-y-4 max-w-[95%] sm:w-fit rounded-xl md:rounded-[30px] px-4 md:px-8 py-10 bg-white outline-none !important;
@@ -303,7 +306,7 @@
     @apply h1 text-center text-light-100 md:text-left !important;
   }
   .form-submit-button {
-    @apply primary-btn h-[66px] !important;
+    @apply primary-btn h-[52px] !important;
   }
   .error-message {
     @apply body-2 mx-auto w-fit rounded-xl bg-error/5 px-8 py-4 text-center text-error !important;
@@ -459,4 +462,9 @@
   body {
     /* @apply bg-background text-foreground; */
   }
+}
+
+input:-webkit-autofill,
+input:focus:-webkit-autofill {
+  -webkit-box-shadow: inset 0 0 0px 9999px white !important;
 }

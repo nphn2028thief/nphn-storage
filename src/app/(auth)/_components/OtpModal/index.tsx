@@ -62,6 +62,7 @@ function OtpModal(props: IProps) {
       }
     } catch (error) {
       // Do something with error
+      console.log(error);
     }
 
     setIsLoading(false);
@@ -73,6 +74,7 @@ function OtpModal(props: IProps) {
       await sendEmailOTP({ email });
     } catch (error) {
       // Do something with error
+      console.log(error);
     } finally {
       setIsResendLoading(false);
     }
@@ -86,8 +88,8 @@ function OtpModal(props: IProps) {
             Enter your OTP
           </AlertDialogTitle>
           <AlertDialogDescription className="subtitle-2 text-center text-light-100">
-            We've sent the code to{" "}
-            <span className="pl-1 text-brand">nhannguyen2000jin@gmail.com</span>
+            We&apos;ve sent the code to{" "}
+            <span className="pl-1 text-brand">{email}</span>
           </AlertDialogDescription>
         </AlertDialogHeader>
 
@@ -135,7 +137,7 @@ function OtpModal(props: IProps) {
               </RenderIf>
             </AlertDialogAction>
             <div className="text-center text-sm">
-              Didn't get a code?
+              Didn&apos;t get a code?
               <Button
                 type="button"
                 variant="link"

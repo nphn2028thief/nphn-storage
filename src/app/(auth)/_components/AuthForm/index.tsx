@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { useMemo, useState } from "react";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
@@ -27,6 +28,8 @@ type TProps = "sign-in" | "sign-up";
 function AuthForm({ type }: { type: TProps }) {
   const [userId, setuserId] = useState<string>("");
 
+  const t = useTranslations("AuthForm");
+
   const authSchema = useMemo(() => {
     return z.object({
       fullname:
@@ -34,13 +37,13 @@ function AuthForm({ type }: { type: TProps }) {
           ? z
               .string()
               .min(3, {
-                message: "Full name must be at least 3 character(s)",
+                message: t("validate_fullname"),
               })
               .trim()
           : z.string().optional(),
-      email: z.string().email().trim(),
+      email: z.string().email(t("validate_email")).trim(),
     });
-  }, [type]);
+  }, [type, t]);
 
   const form = useForm<z.infer<typeof authSchema>>({
     defaultValues: {
@@ -66,7 +69,7 @@ function AuthForm({ type }: { type: TProps }) {
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="auth-form">
           <h1 className="form-title">
-            {type === "sign-in" ? "Login" : "Create Account"}
+            {type === "sign-in" ? t("login") : t("create_account")}
           </h1>
 
           <RenderIf condition={type === "sign-up"}>
@@ -76,10 +79,12 @@ function AuthForm({ type }: { type: TProps }) {
               render={({ field }) => (
                 <FormItem>
                   <div className="shad-form-item">
-                    <FormLabel className="shad-form-label">Full name</FormLabel>
+                    <FormLabel className="shad-form-label">
+                      {t("fullname")}
+                    </FormLabel>
                     <FormControl>
                       <Input
-                        placeholder="Enter full name"
+                        placeholder={t("enter_fullname")}
                         className="shad-input"
                         spellCheck={false}
                         disabled={form.formState.isSubmitting}
@@ -99,10 +104,12 @@ function AuthForm({ type }: { type: TProps }) {
             render={({ field }) => (
               <FormItem>
                 <div className="shad-form-item">
-                  <FormLabel className="shad-form-label">Email</FormLabel>
+                  <FormLabel className="shad-form-label">
+                    {t("email")}
+                  </FormLabel>
                   <FormControl>
                     <Input
-                      placeholder="Enter your email"
+                      placeholder={t("enter_your_email")}
                       className="shad-input"
                       spellCheck={false}
                       disabled={form.formState.isSubmitting}
@@ -119,7 +126,7 @@ function AuthForm({ type }: { type: TProps }) {
             disabled={form.formState.isSubmitting}
             className="form-submit-button"
           >
-            {type === "sign-in" ? "Login" : "Create Account"}
+            {type === "sign-in" ? t("login") : t("create_account")}
             <RenderIf condition={form.formState.isSubmitting}>
               <Image
                 src="/assets/icons/loader.svg"
@@ -133,16 +140,14 @@ function AuthForm({ type }: { type: TProps }) {
 
           <div className="flex justify-center body-2">
             <p className="text-light-100">
-              {type === "sign-in"
-                ? "Don't have an account?"
-                : "Already have an account?"}
+              {type === "sign-in" ? t("no_account") : t("have_account")}
             </p>
             <Link
               href={type === "sign-in" ? EPath.SIGNUP : EPath.SIGNIN}
               className="font-medium text-brand ml-1"
               onClick={(e) => form.formState.isSubmitting && e.preventDefault()}
             >
-              {type === "sign-in" ? "Create Account" : "Login"}
+              {type === "sign-in" ? t("create_account") : t("login")}
             </Link>
           </div>
         </form>

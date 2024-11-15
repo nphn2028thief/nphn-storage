@@ -1,0 +1,25 @@
+{
+  "AuthLayout": {
+    "title": "Manage your files the best way",
+    "description": "This is a place where you can store all your documents."
+  },
+  "AuthForm": {
+    "login": "Login",
+    "create_account": "Create Account",
+    "fullname": "Full name",
+    "enter_fullname": "Enter full name",
+    "validate_fullname": "Full name must be at least 3 character(s)",
+    "email": "Email",
+    "enter_your_email": "Enter your email",
+    "validate_email": "Email is not correct.",
+    "no_account": "Don't have an account?",
+    "have_account": "Already have an account?",
+    "validate_otp_code": "Please enter your OTP code.",
+    "validate_otp_code_length": "OTP code is incorrect.",
+    "enter_your_otp": "Enter your OTP",
+    "sent_the_code_to": "We've sent the code to",
+    "submit": "Submit",
+    "did_not_get_a_code": "Didn't get a code?",
+    "resend": "Resend"
+  }
+}

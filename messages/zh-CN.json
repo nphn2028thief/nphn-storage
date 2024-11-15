@@ -1,0 +1,25 @@
+{
+  "AuthLayout": {
+    "title": "以最佳方式管理您的文件",
+    "description": "这是您可以存储所有文档的地方。"
+  },
+  "AuthForm": {
+    "login": "登录",
+    "create_account": "创建账户",
+    "fullname": "姓名",
+    "enter_fullname": "输入全名",
+    "validate_fullname": "全名必须至少包含 3 个字符",
+    "email": "电子邮件",
+    "enter_your_email": "输入您的电子邮件",
+    "validate_email": "电子邮件不正确。",
+    "no_account": "没有帐户？",
+    "have_account": "已经有帐户？",
+    "validate_otp_code": "请输入您的 OTP 代码。",
+    "validate_otp_code_length": "OTP 代码不正确。",
+    "enter_your_otp": "输入您的OTP",
+    "sent_the_code_to": "我们已将代码发送至",
+    "submit": "提交",
+    "did_not_get_a_code": "没有收到代码？",
+    "resend": "重新发送"
+  }
+}

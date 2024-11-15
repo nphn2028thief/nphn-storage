@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { memo, MouseEvent, useState } from "react";
 
 import {
@@ -38,16 +39,18 @@ function OtpModal(props: IProps) {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isResendLoading, setIsResendLoading] = useState<boolean>(false);
 
+  const t = useTranslations("AuthForm");
+
   const handleSubmit = async (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
 
     if (!otpCode) {
-      setOtpValidate("Please enter your OTP code.");
+      setOtpValidate(t("validate_otp_code"));
       return;
     }
 
     if (otpCode.length < 6) {
-      setOtpValidate("OTP code is incorrect.");
+      setOtpValidate(t("validate_otp_code_length"));
       return;
     }
 
@@ -85,10 +88,10 @@ function OtpModal(props: IProps) {
       <AlertDialogContent className="shad-alert-dialog">
         <AlertDialogHeader className="relative flex justify-center">
           <AlertDialogTitle className="h2 text-center">
-            Enter your OTP
+            {t("enter_your_otp")}
           </AlertDialogTitle>
           <AlertDialogDescription className="subtitle-2 text-center text-light-100">
-            We&apos;ve sent the code to{" "}
+            {t("sent_the_code_to")}{" "}
             <span className="pl-1 text-brand">{email}</span>
           </AlertDialogDescription>
         </AlertDialogHeader>
@@ -125,7 +128,7 @@ function OtpModal(props: IProps) {
               disabled={isLoading || isResendLoading}
               onClick={handleSubmit}
             >
-              Submit
+              {t("submit")}
               <RenderIf condition={isLoading}>
                 <Image
                   src="/assets/icons/loader.svg"
@@ -137,7 +140,7 @@ function OtpModal(props: IProps) {
               </RenderIf>
             </AlertDialogAction>
             <div className="text-center text-sm">
-              Didn&apos;t get a code?
+              {t("did_not_get_a_code")}
               <Button
                 type="button"
                 variant="link"
@@ -145,7 +148,7 @@ function OtpModal(props: IProps) {
                 disabled={isLoading || isResendLoading}
                 onClick={handleResendOtp}
               >
-                Resend
+                {t("resend")}
                 <RenderIf condition={isResendLoading}>
                   <Image
                     src="/assets/icons/loader-brand.svg"

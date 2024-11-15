@@ -93,7 +93,7 @@
 @layer utilities {
   /* ===== TYPOGRAPHY */
   .h1 {
-    @apply text-[34px] leading-[42px] font-bold;
+    @apply text-3xl leading-[42px] font-bold;
   }
   .h2 {
     @apply text-[24px] leading-[36px] font-bold;

@@ -1,8 +1,11 @@
 import Image from "next/image";
+import { getTranslations } from "next-intl/server";
 
 import { ILayoutProps } from "@/types/layout";
 
-function AuthLayout({ children }: ILayoutProps) {
+async function AuthLayout({ children }: ILayoutProps) {
+  const t = await getTranslations("AuthLayout");
+
   return (
     <div className="flex min-h-screen">
       <section className="max-w-[430px] w-1/2 xl:W-2/5 hidden lg:flex justify-center items-center bg-brand p-10">
@@ -17,10 +20,8 @@ function AuthLayout({ children }: ILayoutProps) {
             />
           </div>
           <div className="space-y-5 text-white">
-            <h1 className="h1">Manage your files the best way</h1>
-            <p className="body-1">
-              This is a place where you can store all your documents.
-            </p>
+            <h1 className="h1">{t("title")}</h1>
+            <p className="body-1">{t("description")}</p>
           </div>
           <div className="flex justify-center items-center">
             <Image

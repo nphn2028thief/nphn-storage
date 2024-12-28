@@ -8,7 +8,7 @@
   }
 
   body {
-    @apply bg-white text-dark-200 min-h-screen;
+    @apply bg-white text-dark-200;
   }
 
   /* Remove scrollbar */
@@ -205,7 +205,7 @@
 
   /* Root Layout */
   .main-content {
-    @apply remove-scrollbar h-full flex-1 overflow-auto bg-light-400 px-5 py-7 sm:mr-7 sm:rounded-[30px] md:mb-7 md:px-9 md:py-10 !important;
+    @apply flex-1 overflow-auto bg-light-400 px-5 py-7 sm:mr-7 sm:rounded-[30px] sm:mb-7 md:px-9 md:py-10 !important;
   }
 
   /* Dashboard */
@@ -419,16 +419,16 @@
 
   /* Sidebar */
   .sidebar {
-    @apply remove-scrollbar hidden h-screen w-[90px] flex-col overflow-auto px-5 py-7 sm:flex lg:w-[280px] xl:w-[325px] !important;
+    @apply remove-scrollbar hidden h-full w-[90px] flex-col overflow-auto pr-3 pt-7 pb-5 sm:flex lg:w-[280px] xl:w-[325px] !important;
   }
   .sidebar-nav {
-    @apply h5 mt-9 flex-1 gap-1 text-brand !important;
+    @apply h5 pl-5 pr-3 mt-9 flex-1 text-brand overflow-auto !important;
   }
   .sidebar-nav-item {
-    @apply flex text-light-100 gap-4 rounded-xl lg:w-full justify-center lg:justify-start items-center h5 lg:px-[30px] h-[52px] lg:rounded-full !important;
+    @apply flex text-light-100 gap-4 rounded-xl lg:w-full justify-center lg:justify-start items-center h5 lg:px-[30px] aspect-square lg:aspect-auto lg:h-[52px] lg:rounded-full !important;
   }
   .sidebar-user-info {
-    @apply mt-4 flex items-center justify-center gap-2 rounded-full bg-brand/10 p-1 text-light-100 lg:justify-start lg:p-3 !important;
+    @apply mt-4 ml-5 mr-3 flex items-center justify-center gap-2 rounded-full bg-brand/10 p-1 text-light-100 lg:justify-start lg:p-3 !important;
   }
   .sidebar-user-avatar {
     @apply aspect-square w-10 rounded-full object-cover !important;
@@ -462,6 +462,32 @@
   body {
     /* @apply bg-background text-foreground; */
   }
+}
+
+html,
+body {
+  height: 100%;
+}
+
+html {
+  text-rendering: optimizeSpeed;
+  scroll-behavior: smooth;
+}
+
+html *::-webkit-scrollbar {
+  border-radius: 0;
+  width: 4px;
+  height: 14px;
+}
+
+html *::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: #ea6365;
+}
+
+html *::-webkit-scrollbar-track {
+  border-radius: 0;
+  background-color: rgba(0, 0, 0, 0);
 }
 
 input:-webkit-autofill,

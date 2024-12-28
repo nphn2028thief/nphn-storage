@@ -5,8 +5,10 @@ export default getRequestConfig(async () => {
   // Provide a static locale, fetch a user setting,
   // read from `cookies()`, `headers()`, etc.
   const acceptLanguage = (await headers()).get("accept-language");
-  console.log(acceptLanguage);
-  const locale = acceptLanguage ? acceptLanguage.split(",")[0] : "en-US";
+  const locale =
+    acceptLanguage && acceptLanguage.split(",")[0] !== "vi-VN"
+      ? acceptLanguage.split(",")[0]
+      : "en-US";
 
   return {
     locale,

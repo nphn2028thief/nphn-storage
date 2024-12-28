@@ -1,7 +1,7 @@
 import Loading from "@/components/common/Loading";
 
-function AuthLoading() {
+function MainLoading() {
   return <Loading />;
 }
 
-export default AuthLoading;
+export default MainLoading;

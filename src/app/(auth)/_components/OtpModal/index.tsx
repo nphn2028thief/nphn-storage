@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { memo, MouseEvent, useState } from "react";
+import toast from "react-hot-toast";
 
 import {
   AlertDialog,
@@ -21,12 +22,14 @@ import {
 } from "@/components/ui/input-otp";
 import { Button } from "@/components/ui/button";
 import RenderIf from "@/components/common/RenderIf";
+import envConfig from "@/config/envConfig";
 import { EPath } from "@/constants/path";
-import { sendEmailOTP, verifyOtp } from "@/lib/actions/user";
+import { IGetOtpResponse, IMessage } from "@/types/user";
+import { fetchUtility } from "@/utils";
 
 interface IProps {
   email: string;
-  userId: string;
+  userId: number | null;
 }
 
 function OtpModal(props: IProps) {
@@ -45,12 +48,12 @@ function OtpModal(props: IProps) {
     e.preventDefault();
 
     if (!otpCode) {
-      setOtpValidate(t("validate_otp_code"));
+      setOtpValidate(t("SM_AuthForm_OTP_Empty"));
       return;
     }
 
     if (otpCode.length < 6) {
-      setOtpValidate(t("validate_otp_code_length"));
+      setOtpValidate(t("SM_AuthForm_OTP_Incorrect"));
       return;
     }
 
@@ -58,26 +61,38 @@ function OtpModal(props: IProps) {
     setIsLoading(true);
 
     try {
-      const { sessionId } = await verifyOtp({ userId, otpCode });
-
-      if (sessionId) {
-        router.push(EPath.HOME);
-      }
+      const options: RequestInit = {
+        method: "POST",
+        body: JSON.stringify({ userId, otpCode }),
+      };
+      const { message } = await fetchUtility<IMessage>(
+        `${envConfig.apiUrl}/auth/signIn`,
+        options
+      );
+      toast.success(message);
+      router.push(EPath.HOME);
     } catch (error) {
-      // Do something with error
-      console.log(error);
+      toast.error("Failed to verify OTP.");
+    } finally {
+      setIsLoading(false);
     }
-
-    setIsLoading(false);
   };
 
   const handleResendOtp = async () => {
     setIsResendLoading(true);
+
     try {
-      await sendEmailOTP({ email });
+      const options: RequestInit = {
+        method: "POST",
+        body: JSON.stringify({ email }),
+      };
+      await fetchUtility<IGetOtpResponse>(
+        `${envConfig.apiUrl}/auth/getOtp`,
+        options
+      );
+      toast.success("The OTP has been sent. Please check your email.");
     } catch (error) {
-      // Do something with error
-      console.log(error);
+      toast.error("Failed to get OTP.");
     } finally {
       setIsResendLoading(false);
     }
@@ -88,10 +103,10 @@ function OtpModal(props: IProps) {
       <AlertDialogContent className="shad-alert-dialog">
         <AlertDialogHeader className="relative flex justify-center">
           <AlertDialogTitle className="h2 text-center">
-            {t("enter_your_otp")}
+            {t("SM_AuthForm_OTP_Dialog_Header")}
           </AlertDialogTitle>
           <AlertDialogDescription className="subtitle-2 text-center text-light-100">
-            {t("sent_the_code_to")}{" "}
+            {t("SM_AuthForm_OTP_Dialog_Sent_To")}{" "}
             <span className="pl-1 text-brand">{email}</span>
           </AlertDialogDescription>
         </AlertDialogHeader>
@@ -128,7 +143,7 @@ function OtpModal(props: IProps) {
               disabled={isLoading || isResendLoading}
               onClick={handleSubmit}
             >
-              {t("submit")}
+              {t("SM_AuthForm_OTP_Dialog_Submit")}
               <RenderIf condition={isLoading}>
                 <Image
                   src="/assets/icons/loader.svg"
@@ -140,7 +155,7 @@ function OtpModal(props: IProps) {
               </RenderIf>
             </AlertDialogAction>
             <div className="text-center text-sm">
-              {t("did_not_get_a_code")}
+              {t("SM_AuthForm_OTP_Dialog_Did_Not_Get_Code")}
               <Button
                 type="button"
                 variant="link"
@@ -148,7 +163,7 @@ function OtpModal(props: IProps) {
                 disabled={isLoading || isResendLoading}
                 onClick={handleResendOtp}
               >
-                {t("resend")}
+                {t("SM_AuthForm_OTP_Dialog_Resend")}
                 <RenderIf condition={isResendLoading}>
                   <Image
                     src="/assets/icons/loader-brand.svg"

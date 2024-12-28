@@ -1,24 +1,15 @@
 "use client";
 
-import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
+import { useState } from "react";
 
-import { EPath } from "@/constants/path";
-import { Route } from "@/constants/route";
-import { cn } from "@/lib/utils";
-import { useTranslations } from "next-intl";
 import NavItem from "./NavItem";
-import { useEffect, useState } from "react";
-import envConfig from "@/config/envConfig";
+import { EPath } from "@/constants/path";
 import { IGetMe } from "@/types/user";
 
 function Sidebar() {
-  const pathname = usePathname();
-
-  const [user, setUser] = useState<IGetMe | null>(null);
-
-  const t = useTranslations("Sidebar");
+  const [user] = useState<IGetMe | null>(null);
 
   // useEffect(() => {
   //   const getCurrentUser = async () => {

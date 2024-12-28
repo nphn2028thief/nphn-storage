@@ -73,6 +73,7 @@ function OtpModal(props: IProps) {
       router.push(EPath.HOME);
     } catch (error) {
       toast.error("Failed to verify OTP.");
+      console.log("Verify OTP error: ", error);
     } finally {
       setIsLoading(false);
     }
@@ -93,6 +94,7 @@ function OtpModal(props: IProps) {
       toast.success("The OTP has been sent. Please check your email.");
     } catch (error) {
       toast.error("Failed to get OTP.");
+      console.log("Get OTP error: ", error);
     } finally {
       setIsResendLoading(false);
     }

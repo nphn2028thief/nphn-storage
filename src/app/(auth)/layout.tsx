@@ -1,9 +1,34 @@
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 
+import envConfig from "@/config/envConfig";
+import { IGetMe } from "@/types/user";
 import { ILayoutProps } from "@/types/layout";
+import { fetchUtility } from "@/utils";
 
 async function AuthLayout({ children }: ILayoutProps) {
+  const cookie = await cookies();
+
+  if (cookie) {
+    const options: RequestInit = {
+      method: "GET",
+      credentials: "include",
+      headers: {
+        Cookie: cookie.toString(),
+      },
+    };
+    const { message } = await fetchUtility<IGetMe>(
+      `${envConfig.apiUrl}/auth/getMe`,
+      options
+    );
+
+    if (!message.length) {
+      redirect("/");
+    }
+  }
+
   const t = await getTranslations("AuthLayout");
 
   return (
@@ -20,8 +45,8 @@ async function AuthLayout({ children }: ILayoutProps) {
             />
           </div>
           <div className="space-y-5 text-white">
-            <h1 className="h1">{t("title")}</h1>
-            <p className="body-1">{t("description")}</p>
+            <h1 className="h1">{t("SM_AuthLayout_Title")}</h1>
+            <p className="body-1">{t("SM_AuthLayout_Description")}</p>
           </div>
           <div className="flex justify-center items-center">
             <Image

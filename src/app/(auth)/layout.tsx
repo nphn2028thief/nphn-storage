@@ -1,33 +1,33 @@
-import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
+// import { cookies } from "next/headers";
+// import { redirect } from "next/navigation";
 import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 
-import envConfig from "@/config/envConfig";
-import { IGetMe } from "@/types/user";
+// import envConfig from "@/config/envConfig";
+// import { IGetMe } from "@/types/user";
 import { ILayoutProps } from "@/types/layout";
-import { fetchUtility } from "@/utils";
+// import { fetchUtility } from "@/utils";
 
 async function AuthLayout({ children }: ILayoutProps) {
-  const cookie = await cookies();
+  // const cookie = await cookies();
 
-  if (cookie) {
-    const options: RequestInit = {
-      method: "GET",
-      credentials: "include",
-      headers: {
-        Cookie: cookie.toString(),
-      },
-    };
-    const { message } = await fetchUtility<IGetMe>(
-      `${envConfig.apiUrl}/auth/getMe`,
-      options
-    );
+  // if (cookie) {
+  //   const options: RequestInit = {
+  //     method: "GET",
+  //     credentials: "include",
+  //     headers: {
+  //       Cookie: cookie.toString(),
+  //     },
+  //   };
+  //   const { message } = await fetchUtility<IGetMe>(
+  //     `${envConfig.apiUrl}/auth/getMe`,
+  //     options
+  //   );
 
-    if (!message.length) {
-      redirect("/");
-    }
-  }
+  //   if (!message.length) {
+  //     redirect("/");
+  //   }
+  // }
 
   const t = await getTranslations("AuthLayout");
 

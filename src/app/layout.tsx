@@ -3,6 +3,7 @@ import type { Metadata, Viewport } from "next";
 import { Poppins } from "next/font/google";
 import { getLocale, getMessages } from "next-intl/server";
 import { NextIntlClientProvider } from "next-intl";
+import { Toaster } from "react-hot-toast";
 
 import "./globals.css";
 
@@ -40,6 +41,7 @@ export default async function RootLayout({
       <body className={`${poppins.variable} font-poppins antialiased`}>
         <NextIntlClientProvider messages={messages}>
           {children}
+          <Toaster position="top-center" />
         </NextIntlClientProvider>
       </body>
     </html>

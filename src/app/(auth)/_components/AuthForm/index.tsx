@@ -73,6 +73,7 @@ function AuthForm({ type }: { type: TProps }) {
       setuserId(data.userId);
     } catch (error) {
       toast.error("Failed to get OTP.");
+      console.log("Get OTP error: ", error);
     }
   };
 

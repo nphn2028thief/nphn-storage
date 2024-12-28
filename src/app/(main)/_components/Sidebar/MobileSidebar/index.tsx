@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import { useTranslations } from "next-intl";
 
 import {
   Sheet,
@@ -17,8 +16,6 @@ import SignOutButton from "@/components/common/SignOutButton";
 
 function MobileSidebar() {
   const [open, setOpen] = useState<boolean>(false);
-
-  const t = useTranslations("Sidebar");
 
   return (
     <div className="mobile-header">

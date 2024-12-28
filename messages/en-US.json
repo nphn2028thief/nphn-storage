@@ -1,25 +1,33 @@
 {
   "AuthLayout": {
-    "title": "Manage your files the best way",
-    "description": "This is a place where you can store all your documents."
+    "SM_AuthLayout_Title": "Manage your files the best way",
+    "SM_AuthLayout_Description": "This is a place where you can store all your documents."
   },
   "AuthForm": {
-    "login": "Login",
-    "create_account": "Create Account",
-    "fullname": "Full name",
-    "enter_fullname": "Enter full name",
-    "validate_fullname": "Full name must be at least 3 character(s)",
-    "email": "Email",
-    "enter_your_email": "Enter your email",
-    "validate_email": "Email is not correct.",
-    "no_account": "Don't have an account?",
-    "have_account": "Already have an account?",
-    "validate_otp_code": "Please enter your OTP code.",
-    "validate_otp_code_length": "OTP code is incorrect.",
-    "enter_your_otp": "Enter your OTP",
-    "sent_the_code_to": "We've sent the code to",
-    "submit": "Submit",
-    "did_not_get_a_code": "Didn't get a code?",
-    "resend": "Resend"
+    "SM_AuthForm_Login": "Login",
+    "SM_AuthForm_Create_Account": "Create Account",
+    "SM_AuthForm_Fullname": "Full name",
+    "SM_AuthForm_Enter_Fullname": "Enter full name",
+    "SM_AuthForm_Validate_Fullname": "Full name must be at least 3 character(s)",
+    "SM_AuthForm_Email": "Email",
+    "SM_AuthForm_Email_Placeholder": "Enter your email",
+    "SM_AuthForm_Email_Incorrect_Email": "Email is incorrect.",
+    "SM_AuthForm_Do_Not_Have_Account": "Don't have an account?",
+    "SM_AuthForm_Have_Account": "Already have an account?",
+    "SM_AuthForm_OTP_Empty": "Please enter your OTP code.",
+    "SM_AuthForm_OTP_Incorrect": "OTP code is incorrect.",
+    "SM_AuthForm_OTP_Dialog_Header": "Enter your OTP",
+    "SM_AuthForm_OTP_Dialog_Sent_To": "We've sent the code to",
+    "SM_AuthForm_OTP_Dialog_Submit": "Submit",
+    "SM_AuthForm_OTP_Dialog_Did_Not_Get_Code": "Didn't get a code?",
+    "SM_AuthForm_OTP_Dialog_Resend": "Resend"
+  },
+  "Sidebar": {
+    "SM_Sidebar_Dashboard": "Dashboard",
+    "SM_Sidebar_Documents": "Documents",
+    "SM_Sidebar_Images": "Images",
+    "SM_Sidebar_Media": "Media",
+    "SM_Sidebar_Others": "Others",
+    "SM_Sidebar_Logout": "Log out"
   }
 }

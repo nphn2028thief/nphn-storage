@@ -1,0 +1,33 @@
+{
+  "AuthLayout": {
+    "SM_AuthLayout_Title": "Administre sus archivos de la mejor manera",
+    "SM_AuthLayout_Description": "Este es un lugar donde puedes almacenar todos tus documentos."
+  },
+  "AuthForm": {
+    "SM_AuthForm_Login": "Iniciar sesión",
+    "SM_AuthForm_Create_Account": "Crear una cuenta",
+    "SM_AuthForm_Fullname": "Nombre completo",
+    "SM_AuthForm_Enter_Fullname": "Ingrese el nombre completo",
+    "SM_AuthForm_Validate_Fullname": "El nombre completo debe tener al menos 3 caracteres.",
+    "SM_AuthForm_Email": "Correo electrónico",
+    "SM_AuthForm_Email_Placeholder": "Ingresa tu correo electrónico",
+    "SM_AuthForm_Email_Incorrect_Email": "El correo electrónico no es correcto.",
+    "SM_AuthForm_Do_Not_Have_Account": "No tienes una cuenta?",
+    "SM_AuthForm_Have_Account": "¿Ya tienes una cuenta?",
+    "SM_AuthForm_OTP_Empty": "Introduzca su código OTP.",
+    "SM_AuthForm_OTP_Incorrect": "El código OTP es incorrecto.",
+    "SM_AuthForm_OTP_Dialog_Header": "Ingresa tu OTP",
+    "SM_AuthForm_OTP_Dialog_Sent_To": "Hemos enviado el código a",
+    "SM_AuthForm_OTP_Dialog_Submit": "Enviar",
+    "SM_AuthForm_OTP_Dialog_Did_Not_Get_Code": "¿No recibiste un código?",
+    "SM_AuthForm_OTP_Dialog_Resend": "Reenviar"
+  },
+  "Sidebar": {
+    "SM_Sidebar_Dashboard": "Dashboard",
+    "SM_Sidebar_Documents": "Documents",
+    "SM_Sidebar_Images": "Images",
+    "SM_Sidebar_Media": "Media",
+    "SM_Sidebar_Others": "Others",
+    "SM_Sidebar_Logout": "Log out"
+  }
+}

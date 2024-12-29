@@ -11,7 +11,7 @@ import { fetchUtility } from "@/utils";
 async function AuthLayout({ children }: ILayoutProps) {
   const cookie = await cookies();
 
-  if (cookie.get("token")) {
+  if (cookie) {
     const options: RequestInit = {
       method: "GET",
       credentials: "include",

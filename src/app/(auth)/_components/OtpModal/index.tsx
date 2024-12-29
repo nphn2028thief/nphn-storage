@@ -63,14 +63,18 @@ function OtpModal(props: IProps) {
     try {
       const options: RequestInit = {
         method: "POST",
+        credentials: "include",
         body: JSON.stringify({ userId, otpCode }),
       };
-      const { message } = await fetchUtility<IMessage>(
+      const res = await fetchUtility<IMessage>(
         `${envConfig.apiUrl}/auth/signIn`,
         options
       );
-      toast.success(message);
-      router.push(EPath.HOME);
+
+      if (res) {
+        toast.success(res.message);
+        router.push(EPath.HOME);
+      }
     } catch (error) {
       toast.error("Failed to verify OTP.");
       console.log("Verify OTP error: ", error);

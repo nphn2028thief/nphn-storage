@@ -1,9 +1,37 @@
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
+
 import Sidebar from "./_components/Sidebar";
 import Header from "./_components/Header";
 import MobileSidebar from "./_components/Sidebar/MobileSidebar";
+import { EPath } from "@/constants/path";
+import envConfig from "@/config/envConfig";
+import { IGetMe } from "@/types/user";
 import { ILayoutProps } from "@/types/layout";
+import { fetchUtility } from "@/utils";
 
-function MainLayout({ children }: ILayoutProps) {
+async function MainLayout({ children }: ILayoutProps) {
+  const cookie = await cookies();
+
+  if (cookie) {
+    const options: RequestInit = {
+      method: "GET",
+      credentials: "include",
+      headers: {
+        Cookie: cookie.toString(),
+      },
+    };
+
+    const res = await fetchUtility<IGetMe>(
+      `${envConfig.apiUrl}/auth/getMe`,
+      options
+    );
+
+    if (!res) {
+      redirect(EPath.SIGNIN);
+    }
+  }
+
   return (
     <main className="h-full flex">
       <Sidebar />

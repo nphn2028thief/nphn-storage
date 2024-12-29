@@ -4,6 +4,7 @@ import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 
 import envConfig from "@/config/envConfig";
+import { EPath } from "@/constants/path";
 import { IGetMe } from "@/types/user";
 import { ILayoutProps } from "@/types/layout";
 import { fetchUtility } from "@/utils";
@@ -20,17 +21,13 @@ async function AuthLayout({ children }: ILayoutProps) {
       },
     };
 
-    try {
-      const res = await fetchUtility<IGetMe>(
-        `${envConfig.apiUrl}/auth/getMe`,
-        options
-      );
+    const res = await fetchUtility<IGetMe>(
+      `${envConfig.apiUrl}/auth/getMe`,
+      options
+    );
 
-      if (res) {
-        redirect("/");
-      }
-    } catch (error) {
-      console.error("Get current user error:", error);
+    if (res) {
+      redirect(EPath.HOME);
     }
   }
 

@@ -65,12 +65,15 @@ function AuthForm({ type }: { type: TProps }) {
         method: "POST",
         body: JSON.stringify(payload),
       };
-      const { data } = await fetchUtility<IGetOtpResponse>(
+      const res = await fetchUtility<IGetOtpResponse>(
         `${envConfig.apiUrl}/auth/getOtp`,
         options
       );
-      toast.success("The OTP has been sent. Please check your email.");
-      setuserId(data.userId);
+
+      if (res) {
+        toast.success("The OTP has been sent. Please check your email.");
+        setuserId(res.data.userId);
+      }
     } catch (error) {
       toast.error("Failed to get OTP.");
       console.log("Get OTP error: ", error);

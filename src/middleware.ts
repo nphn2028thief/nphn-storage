@@ -6,7 +6,7 @@ import { EPath } from "./constants/path";
 export async function middleware(request: NextRequest) {
   const cookie = request.cookies;
 
-  if (!cookie.toString()) {
+  if (!cookie.get("token")) {
     return NextResponse.redirect(new URL(EPath.SIGNIN, request.url));
   }
 
